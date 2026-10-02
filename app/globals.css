@@ -226,12 +226,6 @@ svg {
   font-size: 0.9rem;
 }
 
-.hero-note-caption {
-  margin: 0;
-  color: var(--ink-soft);
-  font-size: 0.82rem;
-}
-
 .section {
   padding-block: clamp(5rem, 9vw, 8.5rem);
 }
@@ -264,10 +258,21 @@ svg {
 .about-statement {
   margin: 0 0 1.5rem;
   color: var(--ink);
+  font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
   font-size: clamp(1.5rem, 3vw, 2.25rem);
-  font-weight: 580;
+  font-weight: 600;
   letter-spacing: -0.035em;
   line-height: 1.5;
+}
+
+.about-description {
+  display: grid;
+  gap: 1rem;
+  line-height: 1.9;
+}
+
+.about-description p {
+  margin: 0;
 }
 
 .about-facts {

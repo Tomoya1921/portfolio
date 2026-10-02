@@ -132,7 +132,7 @@ export default function Home() {
               </h1>
               <p className="hero-role">Web × AI × Creative</p>
               <p className="hero-description">
-                WebとAIを掛け合わせ、業務やコミュニケーションをより良くする仕組みを考え、形にしています。
+                WebとAIを掛け合わせて、業務やコミュニケーションをより良くする仕組みを学び、業務改善やデジタル制作につながる自主制作に取り組んでいます。
               </p>
               <div className="hero-actions">
                 <a className="button button-primary" href="#projects">
@@ -156,7 +156,6 @@ export default function Home() {
                 <li>Business Automation</li>
                 <li>Web Planning &amp; Operation</li>
               </ul>
-              <p className="hero-note-caption">学びを、実際に動く制作物へ。</p>
             </aside>
           </div>
         </section>
@@ -166,11 +165,21 @@ export default function Home() {
             <SectionHeading id="about-title" label="01 / About" title="自己紹介" />
             <div className="about-copy">
               <p className="about-statement">
-                技術とクリエイティブの間をつなぎ、使う人に届く形を考えます。
+                AI × Webの可能性
+                <br />
+                変化の先でも、使えるスキルを。
               </p>
-              <p>
-                Web、AI、業務自動化を学びながら、制作物を通して実践的なスキルを身につけています。映像制作や海外生活など、これまでの幅広い経験も今後の仕事に活かしていきたいと考えています。
-              </p>
+              <div className="about-description">
+                <p>
+                  これまで接客、農業、工場勤務、海外生活など、さまざまな環境で働いてきました。
+                </p>
+                <p>
+                  これからは、新たな経験とともにスキルを積み重ねられる仕事に挑戦したいと考え、WebやAIの学習を始めました。
+                </p>
+                <p>
+                  AIの進化によって仕事の形が大きく変わっていく中で、AIをただ使うだけではなく、Webや業務の中に組み込み、実際の業務改善や制作につなげられる力を身につけたいと考えています。
+                </p>
+              </div>
               <dl className="about-facts">
                 <div>
                   <dt>Focus</dt>
