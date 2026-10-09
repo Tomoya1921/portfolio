@@ -1,25 +1,22 @@
-const navigationItems = [
-  { href: "#about", label: "自己紹介" },
-  { href: "#projects", label: "制作物" },
-  { href: "#skills", label: "スキル" },
-  { href: "#video", label: "映像" },
-  { href: "#background", label: "経歴" },
-  { href: "#contact", label: "お問い合わせ" },
-];
+import Link from "next/link";
+import SiteHeader from "./components/site-header";
+import SiteFooter from "./components/site-footer";
 
 const projects = [
   {
     number: "01",
     title: "AI問い合わせ対応自動化",
     englishTitle: "AI Email Automation",
+    href: "/projects/ai-email-automation",
     description:
-      "Gmail APIとOpenAI APIを活用し、問い合わせメールの取得・要約・返信案生成・下書き保存を行う自主制作です。",
+      "問い合わせメールの取得から返信案の生成、下書き保存までを自動化した問い合わせ対応支援システムです。",
     technologies: ["Gmail API", "OpenAI API", "TypeScript"],
   },
   {
     number: "02",
     title: "ReplyPilot AI",
     englishTitle: "Web Marketing Case Study",
+    href: "/projects/replypilot-ai#top",
     description:
       "中小企業向けAI問い合わせ対応サービスを想定した、Webマーケティングの自主制作ケーススタディです。",
     technologies: ["Web Marketing", "LP", "Analytics"],
@@ -31,6 +28,25 @@ const projects = [
     description:
       "生成AIを開発補助として活用しながら制作している、現在ご覧のポートフォリオサイトです。",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
+  },
+];
+
+const videoWorks = [
+  {
+    id: "bros",
+    title: "BROS EFFECT",
+    description: "制作した映像作品「BROS EFFECT」です。",
+    src: "/video_motion/bros.mp4",
+    width: 1920,
+    height: 1080,
+  },
+  {
+    id: "willbe",
+    title: "Willbe",
+    description: "制作した映像作品「Willbe」です。",
+    src: "/video_motion/willbe.mp4",
+    width: 960,
+    height: 540,
   },
 ];
 
@@ -57,7 +73,6 @@ const backgrounds = [
   { title: "海外生活", detail: "3年間" },
   { title: "接客", detail: "カフェ・バリスタ経験" },
   { title: "一次産業", detail: "農業経験" },
-  { title: "就業経験", detail: "派遣社員・契約社員" },
 ];
 
 function ArrowIcon() {
@@ -103,22 +118,7 @@ export default function Home() {
         本文へ移動
       </a>
 
-      <header className="site-header">
-        <div className="header-inner">
-          <a className="brand" href="#top" aria-label="ページ上部へ戻る">
-            TN<span>.</span>
-          </a>
-          <nav aria-label="メインナビゲーション">
-            <ul className="nav-list">
-              {navigationItems.map((item) => (
-                <li key={item.href}>
-                  <a href={item.href}>{item.label}</a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader isHome />
 
       <main id="main-content">
         <section id="top" className="hero" aria-labelledby="hero-title">
@@ -218,9 +218,11 @@ export default function Home() {
                       ))}
                     </ul>
                   </div>
-                  <span className="project-link" aria-label="詳細ページは準備中です">
-                    詳細は準備中 <ArrowIcon />
-                  </span>
+                  {project.href ? (
+                    <Link className="project-link" href={project.href} aria-label={`${project.title}の詳細を見る`}>
+                      View Project <ArrowIcon />
+                    </Link>
+                  ) : null}
                 </article>
               ))}
             </div>
@@ -256,16 +258,28 @@ export default function Home() {
               id="video-title"
               label="04 / Video & Motion"
               title="映像・モーション"
-              lead="Premiere ProやAfter Effectsで制作した作品を掲載予定です。"
+              lead="Premiere ProやAfter Effectsで制作した映像作品です。"
             />
-            <div className="video-placeholder">
-              <div className="play-mark" aria-hidden="true">
-                <span />
-              </div>
-              <div>
-                <p className="video-placeholder-title">作品掲載エリア</p>
-                <p>Video portfolio coming soon.</p>
-              </div>
+            <div className="motion-grid">
+              {videoWorks.map((work) => (
+                <article className="motion-card" key={work.id} aria-labelledby={`motion-${work.id}-title`}>
+                  <video
+                    className="motion-video"
+                    width={work.width}
+                    height={work.height}
+                    controls
+                    playsInline
+                    preload="metadata"
+                    aria-labelledby={`motion-${work.id}-title`}
+                  >
+                    <source src={work.src} type="video/mp4" />
+                    お使いのブラウザは動画再生に対応していません。
+                    <a href={work.src}>動画ファイルを開く</a>
+                  </video>
+                  <h3 id={`motion-${work.id}-title`}>{work.title}</h3>
+                  <p>{work.description}</p>
+                </article>
+              ))}
             </div>
           </div>
         </section>
@@ -314,10 +328,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="site-footer">
-        <p>© 2026 TOMOYA NAKAMURA</p>
-        <a href="#top">ページ上部へ</a>
-      </footer>
+      <SiteFooter />
     </>
   );
 }
